@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 export default class SearchBar extends Component{
 
+    // Initialize component level state in constructor
     constructor(props){
         super(props);
 
@@ -9,14 +10,21 @@ export default class SearchBar extends Component{
         this.onInputChange = this.onInputChange.bind(this);
     }
 
+    // When search text is changed set the state
     onInputChange(event){
         this.setState({term: event.target.value});
-        console.log(event.target.value)
     }
 
+    // To stop the form from submitting
+    onFormSubmit(event){
+        event.preventDefault();
+
+    }
+
+    // Render the component
     render(){
         return (
-            <form className="input-group">
+            <form onSubmit={this.onFormSubmit} className="input-group">
                 <input 
                 className = "form-control"
                 onChange = {this.onInputChange}
